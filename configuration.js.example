@@ -1,0 +1,24 @@
+// [major, minor, patch] default for bailyes
+export const version = [2, 3000, 1015901307];
+// true = online, false = offline
+export const online = true;
+// true = use pairing code, false = use qrcode
+export const usePairingCode = true;
+// bot name
+export const nameBot = "Seaavey-BOT";
+// bot number
+export const number = "62xxxxxx";
+// session path & directories ** do not change **
+export const sessionPath = "session";
+export const directories = "commands";
+// owner number
+export const Owner = ["6289513081052"];
+// language id = indonesia, en = english
+export const language = "id";
+// TimeZone
+// https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+// example: Asia/Jakarta ( WIB )
+export const timeZone = "Asia/Jakarta";
+// PACKAGE WATERMARK STICKER
+export const packName = "";
+export const packPublish = "";

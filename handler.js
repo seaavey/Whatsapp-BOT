@@ -1,0 +1,56 @@
+import helper from "./helpers/helper.js"
+import Logger from "./helpers/log.js"
+import moment from "moment-timezone"
+import { directories, timeZone } from "./configuration.js"
+import { mess } from "./common/mess.js"
+const logger = new Logger()
+/**
+ *
+ * .param {WASocket} sock
+ * .param {any} store
+ * .param {Messages} m
+ * .returns {Promise<void>}
+ */
+export default async function handler(sock, store, m) {
+  try {
+    let isCommand = (m.prefix && m.body.startsWith(m.prefix)) || false
+
+    
+    if (m.fromMe) return
+
+    logger.log(`User ${m.sender.split("@")[0]} - ${await sock.getName(m.sender)}`)
+    logger.log(`Date: ${moment().tz(timeZone).format("DD/MM/YYYY HH:mm:ss")}`)
+    logger.log(`MSG: ${m.type} - ${m.key.id}`)
+    logger.log(`Message: ${m.body}\n`)
+    
+    if (!isCommand) return
+
+    const command = await helper(directories)
+    const cmd = command.find(cmd => cmd.command.some(c => c === m.command.toLowerCase()))
+
+    if (!cmd) return
+    if (!cmd.run) return
+
+    await sock.presenceSubscribe(m.from)
+
+    await sock.sendPresenceUpdate("composing", m.from)
+    if (cmd.isGroup && !m.isGroup) {
+      await sock.sendPresenceUpdate("paused", m.from)
+      return m.reply(mess.isGroup)
+    } else if (cmd.isAdmin && !m.isAdmin && !m.isOwner) {
+      await sock.sendPresenceUpdate("paused", m.from)
+      return m.reply(mess.isAdmin)
+    } else if (cmd.isBotAdmin && !m.isBotAdmin) {
+      await sock.sendPresenceUpdate("paused", m.from)
+      return m.reply(mess.isBotAdmin)
+    } else if (cmd.isOwner && !m.isOwner) {
+      await sock.sendPresenceUpdate("paused", m.from)
+      return m.reply(mess.isOwner)
+    }
+    await cmd.run(m, { sock, store })
+  } catch (e) {
+    logger.error(e)
+  } finally {
+    await sock.sendPresenceUpdate("paused", m.from)
+  }
+}
