@@ -1,6 +1,5 @@
 import loadCommands from "../../helpers/helper.js"
 import { directories } from "../../configuration.js"
-import { changeFont } from "../../common/general.js"
 import { externalAdReply } from "../../common/fake.js"
 export const name = "menu"
 export const command = ["allmenu", "menu"]
@@ -30,5 +29,4 @@ export const run = async (m, { sock }) => {
     text: caption,
     contextInfo: externalAdReply(`Hi ${m.pushName}`, "Powered By Seaavey")
   })
-  console.log(await changeFont("Hello World"))
 }

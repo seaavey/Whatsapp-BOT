@@ -1,5 +1,6 @@
 import axios from "axios"
 import * as cheerio from "cheerio"
+
 export const jawdalSholat = async daerah => {
   try {
     daerah = daerah.replace(/\s/g, "-")
@@ -51,3 +52,21 @@ export const pindl = async url => {
     return "Data Tidak Ditemukan"
   }
 }
+
+export const spotifydl = async url => {
+  url = url.replace("intl-id/", "");
+  const id = url.split("track/")[1].split("?")[0];
+  const res = await axios.get(`https://spowload.com/spotify/track-${id}`, {
+      withCredentials: true
+  });
+  const info = (await axios.get(`https://api.fabdl.com/spotify/get?url=${url}`).then(res => res.data.result));
+  const cookies = res.headers["set-cookie"].map(cookie => cookie.split(";")[0]).join("; ");
+  const csrf = cheerio.load(res.data)('meta[name="csrf-token"]').attr("content");
+  const down = await axios.post("https://spowload.com/convert", { urls: `https://open.spotify.com/track/${id}`, cover: info.image }, { headers: { "Content-Type": "application/json", "X-CSRF-TOKEN": csrf, Cookie: cookies } }).then(res => res.data);
+  if (down.erorr)
+      throw "Data Tidak Ditemukan";
+  return {
+      info,
+      url: down.url
+  };
+};

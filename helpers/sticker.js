@@ -3,7 +3,7 @@ import Crypto from "crypto"
 import path from "path"
 import ff from "fluent-ffmpeg"
 import webp from "node-webpmux"
-const temp = process.platform === "win32" ? process.env.TEMP : "/temp"
+const temp = process.platform === "win32" ? process.env.TEMP : "temp"
 export const imageToWebp = async media => {
   const tmpFileIn = path.join(temp, `${Crypto.randomBytes(6).readUIntLE(0, 6).toString(36)}.${media?.ext || "png"}`)
   const tmpFileOut = path.join(temp, `${Crypto.randomBytes(6).readUIntLE(0, 6).toString(36)}.webp`)

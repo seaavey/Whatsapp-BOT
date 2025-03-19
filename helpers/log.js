@@ -22,4 +22,4 @@ class Logger {
     console.error(`${this._getTime()} ${chalk.red.bold("[ERROR]")} ${chalk.red(message)}`)
   }
 }
-export default Logger
+export default new Logger();

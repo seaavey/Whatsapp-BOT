@@ -107,7 +107,11 @@ export async function serialize(conn, msg, store) {
     }
   }
   m.reply = async (text, options = {}) => {
+    await conn.presenceSubscribe(m.from)
+
+    await conn.sendPresenceUpdate("composing", m.from)
     if (typeof text === "string") {
+      await conn.sendPresenceUpdate("paused", m.from)
       return await conn.sendMessage(m.from, { text, ...options }, { quoted: m, ephemeralExpiration: m.expiration, ...options })
     } else {
       return conn.sendMessage(m.from, { ...text, ...options }, { quoted: m, ephemeralExpiration: m.expiration, ...options })

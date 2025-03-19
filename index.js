@@ -7,9 +7,8 @@ import pino from "pino"
 import { version, online, usePairingCode, number, sessionPath } from "./configuration.js"
 import { delay } from "./common/general.js"
 import { serialize } from "./helpers/serialize.js"
-import Logger from "./helpers/log.js"
+import loggerr from "./helpers/log.js"
 
-const loggerr = new Logger()
 
 const logger = pino({
   timestamp: () => `,"time":"${new Date().toJSON()}"`
@@ -21,8 +20,8 @@ logger.level = "fatal"
 const store = makeInMemoryStore({ logger })
 
 loggerr.info("Starting Bot...")
-
 const waSocket = async () => {
+  
   const { state, saveCreds } = await useMultiFileAuthState(sessionPath)
   const msgRetryCounterCache = new NodeCache()
   let sock = makeWASocket.default({
