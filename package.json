@@ -1,6 +1,6 @@
 {
   "name": "whatsapp-bot",
-  "version": "1.0.1-beta",
+  "version": "1.0.3-rc",
   "description": "A WhatsApp bot built with ES Modules",
   "license": "MIT",
   "type": "module",

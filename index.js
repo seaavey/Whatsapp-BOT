@@ -5,10 +5,9 @@ import { Boom } from "@hapi/boom"
 import NodeCache from "node-cache"
 import pino from "pino"
 import { version, online, usePairingCode, number, sessionPath } from "./configuration.js"
-import { delay } from "./common/general.js"
+import { func } from "@seaavey/scapers"
 import { serialize } from "./helpers/serialize.js"
 import loggerr from "./helpers/log.js"
-
 
 const logger = pino({
   timestamp: () => `,"time":"${new Date().toJSON()}"`
@@ -52,7 +51,7 @@ const waSocket = async () => {
   if (usePairingCode && !sock.authState.creds.registered) {
     if (!number) throw new Error("No number provided")
     let phoneNumber = number.replace(/[^0-9]/g, "")
-    await delay(3000)
+    await func.delay(3000)
     let code = await sock.requestPairingCode(phoneNumber)
     loggerr.log(`Pairing code: ${code.match(/.{1,4}/g).join("-")}`)
   }

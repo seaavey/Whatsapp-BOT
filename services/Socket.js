@@ -4,6 +4,7 @@ import fileType from "file-type";
 import fs from "fs";
 import path from "path";
 import pino from "pino";
+
 export default function ({ sock, store }) {
     const client = Object.defineProperties(sock, {
         downloadMediaMessage: {

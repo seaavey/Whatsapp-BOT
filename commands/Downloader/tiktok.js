@@ -1,22 +1,20 @@
-import { StringToURL } from "../../common/general.js";
-import { Tiktok } from "@seaavey/scapers";
-
+import logger from "../../helpers/log.js";
+import { func, Tiktok } from "@seaavey/scapers";
 export const name = "tiktok";
 export const command = ["tiktok", "ttdl", "tiktokdl"];
 export const category = "Downloader";
 export const desc = "Download video tiktok";
-
 export const run = async (m, { sock }) => {
     try {
         const q = m.isQuoted ? m.quoted.body : m.body;
-        const url = StringToURL(q)?.[0];
+        const url = func.StringToURL(q)?.[0];
         if (!url || !url.includes("tiktok.com"))
             return m.reply("Masukkan URL Tiktoknya");
         m.react("🕒");
         m.reply("Sedang Mendownload...");
-        let res = await Tiktok(url);
+        let res = await Tiktok.download(url);
         if (res && res.code === -1) {
-            res = await Tiktok(url, true);
+            res = await Tiktok.download(url, true);
         }
         if (res.data?.images?.length) {
             for (let i = 0; i < res.data.images.length; i++) {
@@ -36,7 +34,7 @@ export const run = async (m, { sock }) => {
         }
     }
     catch (error) {
-        console.error("Error in tiktok command:", error);
+        logger.error("Error in tiktok command: " + error);
         m.reply("Terjadi kesalahan saat memproses permintaan.");
     }
 };

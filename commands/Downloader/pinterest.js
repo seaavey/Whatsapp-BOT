@@ -1,15 +1,14 @@
 import { pindl } from "../../services/scapers.js";
 import { fetchJSON } from "../../services/fetcher.js";
-import { StringToURL } from "../../common/general.js";
-
+import { func } from "@seaavey/scapers";
+import logger from "../../helpers/log.js";
 export const name = "pindl";
 export const command = ["pinterest", "pindl"];
 export const category = "Downloader";
-
 export const run = async (m, { sock }) => {
     try {
         const q = m.isQuoted ? m.quoted.body : m.body;
-        const url = StringToURL(q)?.[0];
+        const url = func.StringToURL(q)?.[0];
         if (!url || !url.includes("pin")) {
             return m.reply("Masukkan URL Pinterest yang valid.");
         }
@@ -32,7 +31,7 @@ export const run = async (m, { sock }) => {
         await sock.sendVideo(m.from, mediaUrl, "", m);
     }
     catch (error) {
-        console.error("Error in pindl command:", error);
+        logger.error("Error in pindl command: " + error);
         m.reply("Terjadi kesalahan saat memproses permintaan.");
     }
 };
