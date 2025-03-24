@@ -80,6 +80,7 @@ const waSocket = async () => {
   sock.ev.on("contacts.update", update => updateContacts(update, store))
   sock.ev.on("groups.update", update => updateGroupMetadata(update, store))
   sock.ev.on("messages.upsert", async ({ messages }) => {
+
     if (!messages[0].message) return
     let m = await serialize(sock, messages[0], store)
     if (m?.key && !m.key.fromMe && m.key.remoteJid === "status@broadcast") {

@@ -11,6 +11,7 @@ export default async function handler(sock, store, m) {
     
     if (m.fromMe) return
 
+    
     logger.log(`User ${m.sender.split("@")[0]} - ${await sock.getName(m.sender)}`)
     logger.log(`Date: ${moment().tz(timeZone).format("DD/MM/YYYY HH:mm:ss")}`)
     logger.log(`MSG: ${m.type} - ${m.key.id}`)
