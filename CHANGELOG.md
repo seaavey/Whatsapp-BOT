@@ -20,7 +20,7 @@ Keeping track of all the cool updates & fixes in this project!
 
 ---
 
-## [1.0.3-rc] - 2025-03-21
+## [1.0.3-rc](https://github.com/seaavey/Whatsapp-BOT/tree/ae2e6bc4996e82c828ecaf172a9465890cf36350) - 2025-03-21
 
 ### ✨ What's New?
 
@@ -32,7 +32,7 @@ Keeping track of all the cool updates & fixes in this project!
 
 ---
 
-## [1.0.1-beta] - 2025-03-19
+## [1.0.1-beta](https://github.com/seaavey/Whatsapp-BOT/tree/2a6c8c410a2870b5198a11ac3a091a44edf52f42) - 2025-03-19
 
 ### ✨ New Features
 
@@ -41,7 +41,7 @@ Keeping track of all the cool updates & fixes in this project!
 
 ---
 
-## [1.0.0-beta] - 2025-03-18
+## [1.0.0-beta](https://github.com/seaavey/Whatsapp-BOT/tree/017243d4694508ab45553fd8d21db0e62849f92f) - 2025-03-18
 
 ### 🚀 First Release
 

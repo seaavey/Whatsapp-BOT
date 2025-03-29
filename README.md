@@ -100,7 +100,7 @@ This project is open-source and available under the MIT License.
 ## 🙏 Thanks To
 
 - **Seaavey Team** - For development and support
-- [**API Providers**]("services/api.js) - For providing the necessary APIs
+- [**API Providers**](services/api.js) - For providing the necessary APIs
 - **Open-source Contributors** - For improving this project
 - **All Users & Testers** - For feedback and suggestions
 - **Node.js & NPM Community** - For providing essential tools
