@@ -11,6 +11,7 @@
     "dependencies": {
         "@seaavey/baileys": "^6.6.5",
         "@seaavey/scapers": "github:seaavey/scapers",
+        "axios-cookiejar-support": "^5.0.5",
         "chalk": "^5.4.1",
         "dotenv": "^16.4.7",
         "fluent-ffmpeg": "^2.1.3",
@@ -19,6 +20,7 @@
         "moment-timezone": "^0.5.47",
         "node-cache": "^5.1.2",
         "node-webpmux": "^3.2.0",
-        "qrcode-terminal": "^0.12.0"
+        "qrcode-terminal": "^0.12.0",
+        "tough-cookie": "^5.1.2"
     }
 }

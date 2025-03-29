@@ -1,6 +1,6 @@
 import { packName, packPublish } from "../../configuration.js";
 import { fetchBuffer } from "../../services/fetcher.js";
-import { writeExif } from "../../helpers/sticker.js";
+import { writeExif } from "../../helpers/convert.js";
 import logger from "../../helpers/log.js";
 export const name = ["brat", "bratvideo"];
 export const command = name;

@@ -1,7 +1,7 @@
 import logger from "../../helpers/log.js";
 import Uploader from "../../services/uploader.js";
 import axios from "axios";
-import { writeExif } from "../../helpers/sticker.js";
+import { writeExif } from "../../helpers/convert.js";
 import { packName, packPublish } from "../../configuration.js";
 export const name = "qc";
 export const command = ["qc", "fakechat", "quote"];

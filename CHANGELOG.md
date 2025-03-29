@@ -4,6 +4,22 @@ Keeping track of all the cool updates & fixes in this project!
 
 ---
 
+## [1.0.4-rc] - 2025-03-30
+
+### 🐛 Bug Fixes
+
+- Fixed a bug where the bot was not responding to commands.
+- Improved error handling for commands.
+
+### Refactoring
+
+- Cleaned up codebase for better readability.
+- Improved code organization.
+
+---
+
+---
+
 ## [1.0.3-rc] - 2025-03-21
 
 ### ✨ What's New?
@@ -21,7 +37,7 @@ Keeping track of all the cool updates & fixes in this project!
 ### ✨ New Features
 
 - Added some fresh new features (details pending 👀).
-- Various updates to enhance user experience.
+- Various updates to enhance code.
 
 ---
 
