@@ -4,7 +4,12 @@ Keeping track of all the cool updates & fixes in this project!
 
 ---
 
-## [1.0.4-rc] - 2025-03-30
+## [1.0.4-rc](https://github.com/seaavey/Whatsapp-BOT/tree/b019ffc877263f7efc76851343e8dc33db6011dc) - 2025-03-30
+
+### ✨ What's New?
+
+- Version bump: **1.0.3-rc → 1.0.4-rc** (getting closer to stable!)
+- Added Database Support to the bot.
 
 ### 🐛 Bug Fixes
 
@@ -51,3 +56,5 @@ Keeping track of all the cool updates & fixes in this project!
 ---
 
 Stay tuned for more updates! 🚀🔥
+
+Made with ❤️ by **Seaavey Team**

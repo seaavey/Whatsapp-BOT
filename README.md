@@ -58,7 +58,7 @@ export const desc = "testing" // optional
 export const isGroup = false // optional, only group
 export const isAdmin = false // optional, only admin
 export const isBotAdmin = false // optional, only bot admin
-export const isOwner = false // optional, only query
+export const isOwner = false // optional, only owner
 
 export async function run(m, { sock }) {
   // Your code here
