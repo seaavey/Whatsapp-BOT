@@ -23,5 +23,13 @@ export const Request = {
         catch (error) {
             throw new Error(error.response?.data || error.message);
         }
+    },
+    create: async (apiBase, options) => {
+        const baseURL = API[apiBase];
+        if (!baseURL)
+            throw new Error(`API base '${apiBase}' not found`);
+        const { path, params } = options;
+        const queryString = params ? `?${new URLSearchParams(params).toString()}` : "";
+        return `${baseURL}${path}${queryString}`;
     }
 };
