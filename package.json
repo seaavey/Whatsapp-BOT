@@ -21,6 +21,7 @@
         "moment-timezone": "^0.5.47",
         "node-cache": "^5.1.2",
         "node-webpmux": "^3.2.0",
-        "qrcode-terminal": "^0.12.0"
+        "qrcode-terminal": "^0.12.0",
+        "sharp": "^0.32.6"
     }
 }

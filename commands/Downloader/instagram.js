@@ -11,7 +11,6 @@ export const run = async (m, { sock }) => {
             return m.reply("Masukkan URL Instagramnya");
         m.reply("Sedang memproses...");
         let res = (await instagram(url));
-        console.log(res)
 
         if (res?.title) return await sock.sendVideo(m.from, res.url, res.title, m)
     

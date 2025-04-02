@@ -34,3 +34,4 @@ export const run = async (m, { sock }) => {
         m.reply("Terjadi kesalahan saat memproses permintaan.");
     }
 };
+

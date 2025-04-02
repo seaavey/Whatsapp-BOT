@@ -53,7 +53,7 @@ export const run = async (m, { sock }) => {
             packName,
             packPublish
         });
-        return m.reply({ sticker, ai: true });
+        return m.reply({ sticker });
     }
     catch (error) {
         logger.error("Error in fakechat command: " + error);

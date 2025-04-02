@@ -8,6 +8,8 @@ import { version, online, usePairingCode, number, sessionPath } from "./configur
 import { func } from "@seaavey/scapers"
 import { serialize } from "./helpers/serialize.js"
 import loggerr from "./helpers/log.js"
+import { temp } from "./helpers/convert.js"
+import fs from "fs"
 
 const logger = pino({
   timestamp: () => `,"time":"${new Date().toJSON()}"`
@@ -87,8 +89,9 @@ const waSocket = async () => {
       if (m.type === "protocolMessage" && m.message.protocolMessage.type === 0) return
       await sock.readMessages([m.key])
     }
-    const handler = await import("./handler.js")
-    handler.default(sock, store, m)
+    await import(`./handler.js?timestamp=${new Date().getTime()}`).then(handler => {
+      handler.default(sock, store, m)
+    })
   })
   process.on("uncaughtException", console.error)
   process.on("unhandledRejection", console.error)
@@ -101,3 +104,18 @@ export const getMessage = async key => {
   const msg = await store.loadMessage(jid, key.id || "")
   return msg?.message || undefined
 }
+
+if (!fs.existsSync(temp)) {
+  fs.mkdirSync(temp, { recursive: true })
+}
+
+fs.readdirSync(temp).forEach(file => {
+  if (file !== ".nomedia") {
+    try {
+      fs.unlinkSync(`${temp}/${file}`)
+      loggerr.info(`Berhasil menghapus file ${file}`)
+    } catch (error) {
+      loggerr.error(`Gagal menghapus file ${file}:` + error)
+    }
+  }
+})

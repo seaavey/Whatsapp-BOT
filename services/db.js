@@ -1,11 +1,11 @@
-import { getFirestore, setDoc, doc, getDoc, deleteDoc } from "@firebase/firestore";
+import { getFirestore, setDoc, doc, getDoc, deleteDoc, getDocs, collection } from "@firebase/firestore";
 import { initializeApp } from "@firebase/app";
 import { randomBytes } from "crypto";
 import { firebaseConfig } from "../configuration.js";
 import logger from "../helpers/log.js";
 import util from "util";
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 /**
  * USERS is an object that provides methods for performing CRUD (Create, Read, Update, Delete)
  * operations on user data in the Firestore database.
@@ -23,7 +23,9 @@ export const USERS = {
         try {
             await setDoc(doc(db, "users", data.sender), {
                 ID: _ID(),
-                name: data.name
+                name: data.name,
+                sender: data.sender.split("@")[0],
+                premium: false
             });
             return true;
         }
@@ -104,6 +106,20 @@ export const USERS = {
         catch (e) {
             logger.error(util.inspect(e));
             return false;
+        }
+    },
+    getAll: async () => {
+        try {
+            const users = [];
+            const querySnapshot = await getDocs(collection(db, "users"));
+            querySnapshot.forEach(doc => {
+                users.push(doc.data());
+            });
+            return users;
+        }
+        catch (e) {
+            logger.error(util.inspect(e));
+            return [];
         }
     }
 };

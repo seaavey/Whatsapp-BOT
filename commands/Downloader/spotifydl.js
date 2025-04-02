@@ -22,7 +22,7 @@ export const run = async (m, { sock }) => {
         if (buffer) {
             await sock.sendAudio(m.from, buffer.data, m, {
                 ptt: false,
-                seconds: res.info.duration_ms / 1000,
+                filename: res.info.name + ".mp3",
                 mimetype: "audio/mpeg"
             });
         }

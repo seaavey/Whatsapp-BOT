@@ -9,13 +9,13 @@ export const run = async (m) => {
     try {
         if (!m.text)
             return m.reply("Harap berikan teks untuk membuat " + m.command);
-        if (m.command === "bratvideo" && m.text.split(" ").length < 3)
+        if (m.command === "bratvideo" && m.text.split(" ").length < 2)
             return m.reply("Harap berikan teks lebih dari 2 kata untuk membuat video");
         await m.react("🕒");
         const isVideo = m.command === "bratvideo";
         const mimeType = isVideo ? "video/mp4" : "image/png";
         const query = new URLSearchParams({
-            text: encodeURIComponent(m.text),
+            text: m.text,
             ...(isVideo ? { isVideo: "true", delay: "700" } : {})
         }).toString();
         const res = (await fetchBuffer(`https://api.siputzx.my.id/api/m/brat?${query}`));
@@ -27,7 +27,7 @@ export const run = async (m) => {
             packName,
             packPublish
         });
-        return m.reply({ sticker, ai: true });
+        return m.reply({ sticker });
     }
     catch (error) {
         await m.react("❌");

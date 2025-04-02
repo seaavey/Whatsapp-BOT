@@ -4,9 +4,8 @@ import fileType from "file-type";
 import fs from "fs";
 import path from "path";
 import pino from "pino";
-
 export default function ({ sock, store }) {
-    const client = Object.defineProperties(sock, {
+    return Object.defineProperties(sock, {
         downloadMediaMessage: {
             async value(message, filename) {
                 let media = await downloadMediaMessage(message, "buffer", {}, {
@@ -91,5 +90,4 @@ export default function ({ sock, store }) {
             enumerable: true
         }
     });
-    return client;
 }

@@ -152,4 +152,3 @@ const parseMessage = (content) => {
     }
     return content;
 };
-  

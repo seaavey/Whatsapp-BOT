@@ -1,7 +1,7 @@
 import logger from "../../helpers/log.js";
 import { negro } from "@seaavey/scapers";
 export const name = "negro";
-export const command = ["hitamkan", "negro"];
+export const command = ["hitamkan", "negro", "kumar"];
 export const category = "Converts";
 export const run = async (m, { sock }) => {
     try {
@@ -10,10 +10,13 @@ export const run = async (m, { sock }) => {
             let media = (await sock.downloadMediaMessage(q));
             m.react("🔄");
             const nigga = await negro(media, m.text ? m.text : "hitam");
-
+            if (!nigga)
+                return m.reply("Gagal membuat gambar.");
+            m.react("✅");
             await sock.sendImage(m.from, nigga, null, m);
-        } else {
-            return m.reply("Balas gambar dengan caption.")
+        }
+        else {
+            return m.reply("Balas gambar dengan caption.");
         }
     }
     catch (e) {

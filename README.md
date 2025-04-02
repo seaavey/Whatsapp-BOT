@@ -118,7 +118,7 @@ Thank you for your support!
 
 For support or inquiries, reach out to us:
 
-- 🌐 [Website](https://seaavey.biz.id)
+- 🌐 [Website](https://seaavey.me)
 - ✉️ Email: seaavey@gmail.com
 - 📢 Follow us on [Whatsapp Channel](https://whatsapp.com/channel/0029Vb49mcTEgGfJRWTyuz35)
 

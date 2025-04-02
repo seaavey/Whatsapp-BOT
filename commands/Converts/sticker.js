@@ -19,6 +19,8 @@ export const run = async (m, { sock }) => {
             let sticker = await writeExif({ mimetype: q.msg.mimetype, data: media }, exif);
             await m.reply({ sticker });
         }
+        else
+            m.reply("Reply gambar/video!");
     }
     catch (e) {
         m.reply("Mohon maaf, terjadi kesalahan!");
