@@ -9,8 +9,6 @@
         "start": "node index.js"
     },
     "dependencies": {
-        "@firebase/app": "^0.11.3",
-        "@firebase/firestore": "^4.7.10",
         "@seaavey/baileys": "^6.6.6",
         "@seaavey/scapers": "github:seaavey/scapers",
         "chalk": "^5.4.1",

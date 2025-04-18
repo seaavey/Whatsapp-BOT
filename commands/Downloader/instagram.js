@@ -1,5 +1,6 @@
-import { func, instagram } from "@seaavey/scapers";
+import { func } from "@seaavey/scapers";
 import logger from "../../helpers/log.js";
+import { Request } from "../../services/api.js";
 export const name = "igdl";
 export const command = ["instagram", "igdl"];
 export const category = "Downloader";
@@ -10,12 +11,18 @@ export const run = async (m, { sock }) => {
         if (!url || !url.includes("instagram.com"))
             return m.reply("Masukkan URL Instagramnya");
         m.reply("Sedang memproses...");
-        let res = (await instagram(url));
-
-        if (res?.title) return await sock.sendVideo(m.from, res.url, res.title, m)
-    
-        for (let i = 0; i < res.length; i++) {
-          await sock.sendImage(m.from, res[i], null, m)
+        let res = (await Request.get("rex", {
+            path: "/downloader/instagram",
+            params: {
+                url
+            }
+        }));
+        if (!res.status)
+            return m.reply("Gagal memproses permintaan.");
+        if (res.data.metadata.isVideo)
+            return await sock.sendVideo(m.from, res.data.url[0], res.data.metadata.caption, m);
+        for (let i = 0; i < res.data.url.length; i++) {
+            await sock.sendImage(m.from, res.data.url[i], i === 0 ? res.data.metadata.caption : null, m);
         }
     }
     catch (error) {

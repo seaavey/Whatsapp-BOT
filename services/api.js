@@ -21,7 +21,7 @@ export const Request = {
             return response.data;
         }
         catch (error) {
-            throw new Error(error.response?.data || error.message);
+            console.error(error)
         }
     },
     create: async (apiBase, options) => {

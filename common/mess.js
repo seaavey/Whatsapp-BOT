@@ -9,7 +9,6 @@ export const Messages = {
             open: "Berhasil membuka grup, sekarang member bisa mengirim pesan",
             close: "Berhasil menutup grup, member tidak bisa mengirim pesan"
         },
-        isPremium: "Fitur ini hanya dapat digunakan oleh pengguna premium"
     },
     en: {
         isAdmin: "This feature can only be used by group admins",
@@ -20,7 +19,6 @@ export const Messages = {
             open: "Successfully opened the group, now members can send messages",
             close: "Successfully closed the group, members cannot send messages"
         },
-        isPremium: "This feature can only be used by premium users"
     }
 };
 export const introduction = {

@@ -22,15 +22,3 @@ export const timeZone = "Asia/Jakarta";
 // PACKAGE WATERMARK STICKER
 export const packName = "";
 export const packPublish = "";
-
-// Powered By Firebase
-// https://console.firebase.google.com/
-export const firebaseConfig = {
-  apiKey: ",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
-}

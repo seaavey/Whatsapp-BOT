@@ -8,23 +8,22 @@ export function convertDurationToSeconds(duration) {
     return parseInt(m) * 60 + parseInt(s);
 }
 
-export const spotifydl = async (url) => {
-    url = url.replace("intl-id/", "");
-    const id = url.split("track/")[1].split("?")[0];
+export const spotifydl = async url => {
+    url = url.replace("intl-id/", "")
+    const id = url.split("track/")[1].split("?")[0]
     const res = await axios.get(`https://spowload.com/spotify/track-${id}`, {
-        withCredentials: true
-    });
-    const info = (await axios.get(`https://api.fabdl.com/spotify/get?url=${url}`).then(res => res.data.result));
-    const cookies = res.headers["set-cookie"].map(cookie => cookie.split(";")[0]).join("; ");
-    const csrf = cheerio.load(res.data)('meta[name="csrf-token"]').attr("content");
-    const down = await axios.post("https://spowload.com/convert", { urls: `https://open.spotify.com/track/${id}`, cover: info.image }, { headers: { "Content-Type": "application/json", "X-CSRF-TOKEN": csrf, Cookie: cookies } }).then(res => res.data);
-    if (down.erorr)
-        throw "Data Tidak Ditemukan";
+      withCredentials: true
+    })
+    const info = await axios.get(`https://api.fabdl.com/spotify/get?url=${url}`).then(res => res.data.result)
+    const cookies = res.headers["set-cookie"].map(cookie => cookie.split(";")[0]).join("; ")
+    const csrf = cheerio.load(res.data)('meta[name="csrf-token"]').attr("content")
+    const down = await axios.post("https://spowload.com/convert", { urls: `https://open.spotify.com/track/${id}`, cover: "https://i.scdn.co/image/ab67616d0000b27326458812554408283d9e2bd1" }, { headers: { "Content-Type": "application/json", "X-CSRF-TOKEN": csrf, Cookie: cookies } }).then(res => res.data)
+    if (down.erorr) throw "Data Tidak Ditemukan"
     return {
-        info,
-        url: down.url
-    };
-};
+      info,
+      url: down.url
+    }
+  }
 export const Upscale = async (image) => {
     const form = new FormData();
     const { width, height } = await sharp(image).metadata();
